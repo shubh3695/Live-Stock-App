@@ -43,7 +43,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
   }
   public resetStockHistory() {
     this.originalSource = {};
-    this.originalSource = {};
+    this.stockContent = {};
     this.currentStock = undefined;
     this.appService.initChart();
   }
