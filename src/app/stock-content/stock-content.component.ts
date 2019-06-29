@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AppService } from 'src/services/app.service';
 import { timer } from 'rxjs';
+import { SOCKET_CONNECTION } from 'src/base/enums';
 @Component({
   selector: 'app-stock-content',
   templateUrl: './stock-content.component.html',
@@ -30,6 +31,12 @@ export class StockContentComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.appService.initChart();
     this._createConnection();
+    this.appService.websocketAction$()
+      .subscribe((action) => {
+        if (action === SOCKET_CONNECTION.RESTART) {
+          this._createConnection();
+        }
+      });
   }
 
   public loadStockChart(key: string) {
@@ -50,7 +57,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
 
   public searchStockQuery(query: string) {
     this.searchQuery = query;
-    this._filterDisplayContents();
+    this._naiveFilterContents();
   }
 
   public getDifference(current: number, previous: number) {
@@ -107,6 +114,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
   }
 
   private _createConnection() {
+    this.appService.websocketStatus$().next(SOCKET_CONNECTION.RUNNING);
     this.stockService.connect(environment.ws_url).pipe(map((res) => res))
       .subscribe({
         next: (responses) => {
@@ -115,15 +123,18 @@ export class StockContentComponent implements OnInit, OnDestroy {
               this.currentTime = moment.now();
               this._resolveStockContent(response);
             });
-            this._filterDisplayContents();
+            this._naiveFilterContents();
           }
         },
-        error: (err) => console.log(err),
-        complete: () => console.log('Connection Terminated')
+        error: (err) => {
+          this.appService.websocketStatus$().next(SOCKET_CONNECTION.DISCONNECTED);
+          console.log(err);
+        },
+        complete: () => console.log('Connection Successfully Terminated.')
       });
   }
 
-  private _filterDisplayContents() {
+  private _naiveFilterContents() {
     if (!this.searchQuery) {
       this.stockContent = this.originalSource;
       return;

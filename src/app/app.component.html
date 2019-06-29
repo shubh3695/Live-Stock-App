@@ -1,10 +1,10 @@
 <div class="container-fluid root-wrapper">
   <header>
     <div class="row header-content">
-      <span class="label">Stocker</span>
-      <button>
+      <span class="label animated fadeIn delay-2s">Stocker</span>
+      <button class="animated fadeIn delay-2s" (click)="socketServiceContext()">
         <div class="icon"></div>
-        <span class="abc pl-2">Live </span>
+        <span class="socket-status pl-2">{{status}}</span>
       </button>
       <!--Probably Will Add More Content Later-->
     </div>

@@ -18,6 +18,7 @@
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.5);
   }
   .header-content {
+    justify-content: space-between;
     z-index: 1000;
     padding: 15px 40px;
     background-image: linear-gradient(#100e17, #38383a);
@@ -37,8 +38,9 @@
       border-radius: 50%;
       animation: shadow-pulse 1s infinite;
     }
-    .abc {
+    .socket-status {
       display: inline-block;
+      text-transform: uppercase;
     }
     button {
       border: none;
