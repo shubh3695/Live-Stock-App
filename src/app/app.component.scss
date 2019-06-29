@@ -1,0 +1,23 @@
+.root-wrapper {
+  display: inline;
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 4px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.5);
+  }
+  .header-content {
+    z-index: 1000;
+    background-image: linear-gradient(#100e17, #38383a);
+    .content {
+      padding: 15px 40px;
+      span {
+        font-size: 1.5em;
+        font-family: "Lato", sans-serif;
+        color: white;
+      }
+    }
+  }
+}

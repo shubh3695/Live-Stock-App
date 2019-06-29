@@ -1,0 +1,51 @@
+<div class="container-fluid stock-wrapper">
+  <div class="row">
+    <div class="col-6 left-container">
+      <mat-card>
+        <div class="header-wrapper">
+          <i class="fa fa-refresh ml-3 mt-3" aria-hidden="true" (click)="resetStockHistory()"></i>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Search Stock" (change)="searchStockQuery($event)">
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="cards-layout" style="max-height: 400px; height: 400px;">
+          <perfect-scrollbar [config]="config">
+            <div class="row">
+              <div class="col-6 mb-1 px-3 pb-1" *ngFor="let stock of stockContent | keyvalue; let i=index; trackBy:index">
+                <mat-card class="stock-content" (click)="loadStockChart(stock.key)">
+                  <div class="grid-content m-1">
+                    <div class="">
+                      <span class="stock-label">{{stock.key}}</span>
+                      <span class="stock-update mr-1 mt-1">{{getTimeDifference(stock.value.timestamp)}}</span>
+                    </div>
+                    <div class="block">
+                      <span>{{stock.value.current}}</span>
+                      <i [ngClass]="['fa ml-1', stock.value.current >= stock.value.prev ? 'fa-arrow-up': 'fa-arrow-down']"
+                        aria-hidden="true"></i>
+                      <span style="font-size: 12px;"
+                        [ngClass]="[stock.value.current >= stock.value.prev ? 'up': 'down']"
+                        [innerHTML]="getDifference(stock.value.current, stock.value.prev)"></span>
+                    </div>
+                    <div class="min-max-wrapper">
+                      <span class="mr-2">Min : {{stock.value.min}}</span>
+                      <span>Max : {{stock.value.max}}</span>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </perfect-scrollbar>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-6 right-container">
+      <mat-card>
+          <app-chart [id]="'full-chart'"></app-chart>
+        <!-- <app-chart [id]="'full-chart'" [chart-data]="{data: stock.value.chartData, label: stock.key, yAxisID: 'y-axis-0'}" [chart-label]="stock.value.chartLabels"></app-chart> -->
+        <!-- <app-chart [id]="'full-chart'"></app-chart> -->
+      </mat-card>
+    </div>
+  </div>
+</div>

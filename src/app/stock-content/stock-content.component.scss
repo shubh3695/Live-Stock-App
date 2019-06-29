@@ -1,0 +1,48 @@
+.block {
+  display: block;
+}
+.stock-wrapper {
+  margin-top: 6em;
+  .left-container {
+    .header-wrapper {
+      display: flex;
+      flex-direction: row-reverse;
+      i {
+        cursor: pointer;
+      }
+    }
+    .cards-layout {
+      .stock-content {
+        cursor: pointer;
+        background-color: whitesmoke;
+        .grid-content {
+          .stock-label {
+            font-size: 1.5em;
+            font-weight: bold;
+          }
+          .stock-update{
+            float: right;
+            font-style: italic;
+            font-size: 12px;
+            color: gray;
+          }
+          .fa-arrow-up, .up {
+            color: green;
+          }
+          .fa-arrow-down, .down {
+            color: red;
+          }
+          span {
+            font-family: "Lato", sans-serif;
+          }
+          .min-max-wrapper {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  .right-container {
+    border-left: 2px dotted whitesmoke;
+  }
+}
