@@ -17,7 +17,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.appService.websocketStatus$()
       .subscribe((status) => {
-        console.log(status);
         this.status = status;
       });
   }

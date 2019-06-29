@@ -1,6 +1,9 @@
 <div class="container-fluid stock-wrapper">
   <div class="row">
     <div class="col-6 left-container">
+      <div class="root-header">
+        <span>Real Time Stock Information</span>
+      </div>
       <mat-card class="animated fadeIn delay-1s">
         <div class="header-wrapper">
           <i class="fa fa-refresh ml-3 mt-3" aria-hidden="true" (click)="resetStockHistory()" title="Reset Stock History"></i>
@@ -41,6 +44,9 @@
       </mat-card>
     </div>
     <div class="col-6 right-container">
+        <div class="root-header">
+          <span>Real Time Graph</span>
+        </div>
       <mat-card class="animated fadeIn delay-1s">
           <app-chart [id]="'full-chart'"></app-chart>
       </mat-card>

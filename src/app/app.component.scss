@@ -34,9 +34,14 @@
       width: 10px;
       height: 10px;
       color: #fff;
-      background: red;
       border-radius: 50%;
       animation: shadow-pulse 1s infinite;
+    }
+    .icon.red {
+      background: red;
+    }
+    .icon.orange {
+      background: orange;
     }
     .socket-status {
       display: inline-block;

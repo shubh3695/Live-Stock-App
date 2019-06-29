@@ -1,8 +1,19 @@
+span {
+  font-family: "Lato", sans-serif;
+}
 .block {
   display: block;
 }
 .stock-wrapper {
-  margin-top: 6em;
+  margin-top: 4em;
+  .root-header {
+    height: 2em;
+    text-align: center;
+    span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
   .left-container {
     .header-wrapper {
       display: flex;
@@ -20,20 +31,19 @@
             font-size: 1.5em;
             font-weight: bold;
           }
-          .stock-update{
+          .stock-update {
             float: right;
             font-style: italic;
             font-size: 12px;
             color: gray;
           }
-          .fa-arrow-up, .up {
+          .fa-arrow-up,
+          .up {
             color: green;
           }
-          .fa-arrow-down, .down {
+          .fa-arrow-down,
+          .down {
             color: red;
-          }
-          span {
-            font-family: "Lato", sans-serif;
           }
           .min-max-wrapper {
             font-size: 12px;

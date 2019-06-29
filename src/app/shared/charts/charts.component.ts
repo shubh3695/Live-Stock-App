@@ -15,7 +15,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
     this.idVal = id;
   }
   public idVal: string;
-  public lineChartData: ChartDataSets[] = [{ data: [], label: 'Some Stock' }];
+  public lineChartData: ChartDataSets[] = [{ data: [], label: 'Select Stock' }];
   public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions) = {
     responsive: true,
@@ -93,7 +93,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
   }
 
   private _init() {
-    this.lineChartData = [{ data: [], label: 'Some Stock' }];
+    this.lineChartData = [{ data: [], label: 'Select Stock' }];
     this.lineChartLabels = [];
   }
 

@@ -1,9 +1,9 @@
 <div class="container-fluid root-wrapper">
   <header>
     <div class="row header-content">
-      <span class="label animated fadeIn delay-2s">Stocker</span>
+      <span class="label animated fadeIn delay-2s">Stock-o-Pedia</span>
       <button class="animated fadeIn delay-2s" (click)="socketServiceContext()">
-        <div class="icon"></div>
+        <div class="icon" [ngClass]="[status === 'reconnect' ? 'orange' : 'red']"></div>
         <span class="socket-status pl-2">{{status}}</span>
       </button>
       <!--Probably Will Add More Content Later-->
