@@ -3,10 +3,10 @@
     <div class="col-6 left-container">
       <mat-card>
         <div class="header-wrapper">
-          <i class="fa fa-refresh ml-3 mt-3" aria-hidden="true" (click)="resetStockHistory()"></i>
+          <i class="fa fa-refresh ml-3 mt-3" aria-hidden="true" (click)="resetStockHistory()" title="Reset Stock History"></i>
           <form class="example-form">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Search Stock" (change)="searchStockQuery($event)">
+              <input matInput placeholder="eg.. google" [(ngModel)]="searchQuery" (input)="searchStockQuery($event.target.value)" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
         </div>
