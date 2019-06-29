@@ -21,7 +21,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
     suppressScrollY: false
   };
   public stockContent: { [key: string]: IStockContent } = {};
-  public searchDummy: { [key: string]: IStockContent } = {};
+  public originalSource: { [key: string]: IStockContent } = {};
   /* Side Chart Data Starts Here*/
   public lineChartLabel: Label[] = [];
   public lineChartData: ChartDataSets[] = [];
@@ -32,6 +32,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
   constructor(private stockService: WebsocketService, private appService: AppService) { }
 
   public ngOnInit() {
+    this.appService.initChart();
     this.stockService.connect(environment.ws_url).pipe(map((res) => res))
       .subscribe({
         next: (responses) => {
@@ -55,7 +56,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
   }
   public resetStockHistory() {
     this.stockContent = {};
-    this.searchDummy = {};
+    this.originalSource = {};
   }
 
   public searchStockQuery(query: any) {

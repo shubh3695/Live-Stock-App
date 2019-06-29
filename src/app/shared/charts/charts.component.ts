@@ -15,12 +15,10 @@ export class ChartsComponent implements OnInit, OnDestroy {
     this.idVal = id;
   }
   public idVal: string;
-  public lineChartData: ChartDataSets[] = [
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-0' }
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartData: ChartDataSets[] = [{ data: [], label: 'Some Stock' }];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions) = {
-    // responsive: true,
+    responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
       xAxes: [{}],
@@ -29,7 +27,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
           id: 'y-axis-0',
           position: 'left',
           gridLines: {
-            color: 'rgba(0,0,0,0.8)',
+            color: 'rgba(0,0,0,0.4)',
           },
           ticks: {
             fontColor: 'red',
@@ -75,14 +73,21 @@ export class ChartsComponent implements OnInit, OnDestroy {
     this.appService.handleChartContent$()
       .subscribe((result) => {
         switch (result.context) {
-          case CONTEXT_TYPE.RENEW:
+          case CONTEXT_TYPE.NEW_STOCK:
             this._renewChartNode(result.chartData, result.chartLabels);
             break;
           case CONTEXT_TYPE.APPEND:
             this._appendChartNode(result.chartData, result.chartLabels);
             break;
+          case CONTEXT_TYPE.INIT:
+            this._init();
         }
       });
+  }
+
+  private _init() {
+    this.lineChartData = [{ data: [], label: 'Some Stock' }];
+    this.lineChartLabels = [];
   }
 
   private _renewChartNode(lineChartData: ChartDataSets, lineChartLabels: Label[]) {

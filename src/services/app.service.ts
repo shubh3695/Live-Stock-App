@@ -16,10 +16,13 @@ export class AppService {
     public handleChartContent$() {
         return this.chartSubject;
     }
+    public initChart() {
+        this.chartSubject.next({context: CONTEXT_TYPE.INIT});
+    }
     public pushChartData(chartData: ChartDataSets, chartLabels: Label[]) {
         this.chartSubject.next({ context: CONTEXT_TYPE.APPEND, chartData, chartLabels });
     }
     public renewChartData(chartData: ChartDataSets, chartLabels: Label[]) {
-        this.chartSubject.next({ context: CONTEXT_TYPE.RENEW, chartData, chartLabels });
+        this.chartSubject.next({ context: CONTEXT_TYPE.NEW_STOCK, chartData, chartLabels });
     }
 }

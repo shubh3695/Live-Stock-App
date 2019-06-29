@@ -1,5 +1,6 @@
 
 export enum CONTEXT_TYPE {
     APPEND,
-    RENEW
+    NEW_STOCK,
+    INIT
 }

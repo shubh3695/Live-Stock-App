@@ -22,6 +22,6 @@ export interface IStockContent {
 
 export interface IStockDisplay {
     context: CONTEXT_TYPE;
-    chartData: ChartDataSets;
-    chartLabels: Label[];
+    chartData?: ChartDataSets;
+    chartLabels?: Label[];
 }

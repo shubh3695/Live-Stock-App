@@ -1,8 +1,7 @@
 <div class="flex-item" [attr.id]="idVal">
         <div style="display: block;" >
-          <canvas baseChart width="550" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+          <canvas baseChart width="550" height="430" [datasets]="lineChartData" [labels]="lineChartLabels"
             [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-            [chartType]="lineChartType" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+            [chartType]="lineChartType"></canvas>
         </div>
       </div>
