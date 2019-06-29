@@ -116,6 +116,15 @@ export class StockContentComponent implements OnInit, OnDestroy {
     return Number((this.currentTime - time) / 1000).toFixed(0) + ' seconds ago';
   }
 
+  /**
+   * Simply keeps track which item to modify via index
+   * distinct modifier
+   * @param index : index
+   * @param item : item at index
+   */
+  public dataTracker(index, item) {
+    return index;
+  }
   public ngOnDestroy() {
     // close this websocket connection of the component is destroyed
     this.stockService.close();
