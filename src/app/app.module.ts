@@ -7,6 +7,13 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { StockContentComponent } from './stock-content/stock-content.component';
 
+/**
+ *
+ * Root Module i.e. entry module
+ * @export
+ * @class AppModule
+ */
+
 @NgModule({
   declarations: [
     AppComponent,
