@@ -37,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
   }
+  
   private _manageSocketConection() {
     /* Obtaining Status of the socket service from Child component
       using Subject */
