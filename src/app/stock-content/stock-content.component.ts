@@ -23,8 +23,6 @@ export class StockContentComponent implements OnInit, OnDestroy {
   public stockContent: { [key: string]: IStockContent } = {};
   public originalSource: { [key: string]: IStockContent } = {};
   /* Side Chart Data Starts Here*/
-  public lineChartLabel: Label[] = [];
-  public lineChartData: ChartDataSets[] = [];
   private currentStock: string;
   /*Side Chart Data Ends Here */
 
@@ -51,12 +49,13 @@ export class StockContentComponent implements OnInit, OnDestroy {
 
   public loadStockChart(key: string) {
     this.currentStock = key;
-    this.appService.renewChartData({ data: this.stockContent[key].chartData, label: key, yAxisID: 'y-axis-0' },
+    this.appService.renewChartData({ data: this.stockContent[key].chartData, label: key },
       this.stockContent[key].chartLabels);
   }
   public resetStockHistory() {
     this.stockContent = {};
     this.originalSource = {};
+    this.appService.initChart();
   }
 
   public searchStockQuery(query: any) {
@@ -65,7 +64,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
 
   public getDifference(current: number, previous: number) {
     const _DELTA = Number(current - previous).toFixed(2);
-    return +_DELTA + ' (' + Number(((+_DELTA) * 100) / previous).toFixed(2) + '%)';
+    return +_DELTA + '$ (' + Number(((+_DELTA) * 100) / previous).toFixed(2) + '%)';
   }
 
   public getTimeDifference(time) {
@@ -84,7 +83,6 @@ export class StockContentComponent implements OnInit, OnDestroy {
     };
     this.stockContent[response[0]] = _STOCK;
     if (this.currentStock === response[0]) {
-      console.log(this.currentTime + ' ' + response[0]);
       this.appService.pushChartData({ data: response[1] }, [this._getFormattedDate()]);
     }
   }

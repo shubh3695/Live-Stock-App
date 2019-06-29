@@ -21,38 +21,45 @@ export class ChartsComponent implements OnInit, OnDestroy {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
+      xAxes: [
+        {
+          ticks: {
+            fontColor: 'black'
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Time',
+            fontColor: 'black',
+            fontFamily: 'Lato',
+            fontSize: 16,
+            fontStyle: 'bold'
+          }
+        }
+      ],
       yAxes: [
         {
-          id: 'y-axis-0',
           position: 'left',
           gridLines: {
             color: 'rgba(0,0,0,0.4)',
           },
           ticks: {
-            fontColor: 'red',
+            beginAtZero: true,
+            fontColor: 'black',
+          },
+          scaleLabel: {
+            fontColor: 'black',
+            fontFamily: 'Lato',
+            fontSize: 16,
+            fontStyle: 'bold',
+            display: true,
+            labelString: 'Cost (USD)'
           }
         }
       ]
     }
   };
+
   public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
     { // red
       backgroundColor: 'rgba(255,0,0,0.3)',
       borderColor: 'red',
@@ -91,8 +98,8 @@ export class ChartsComponent implements OnInit, OnDestroy {
   }
 
   private _renewChartNode(lineChartData: ChartDataSets, lineChartLabels: Label[]) {
-    this.lineChartData = [lineChartData];
-    this.lineChartLabels = lineChartLabels;
+      this.lineChartData = [lineChartData];
+      this.lineChartLabels = lineChartLabels;
   }
 
   private _appendChartNode(lineChartData: ChartDataSets, lineChartLabels: Label[]) {

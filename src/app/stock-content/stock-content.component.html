@@ -14,7 +14,7 @@
           <perfect-scrollbar [config]="config">
             <div class="row">
               <div class="col-6 mb-1 px-3 pb-1" *ngFor="let stock of stockContent | keyvalue; let i=index; trackBy:index">
-                <mat-card class="stock-content" (click)="loadStockChart(stock.key)">
+                <mat-card [ngClass]="['stock-content', currentStock === stock.key ? 'darken': '']" (click)="loadStockChart(stock.key)">
                   <div class="grid-content m-1">
                     <div class="">
                       <span class="stock-label">{{stock.key}}</span>
