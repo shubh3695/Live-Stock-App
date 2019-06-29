@@ -23,12 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    /* Obtaining Status of the socket service from Child component
-      using Subject */
-    this.appService.websocketStatus$()
-      .subscribe((status) => {
-        this.status = status;
-      });
+    this._manageSocketConection();
   }
 
   public socketServiceContext() {
@@ -41,5 +36,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+  }
+  private _manageSocketConection() {
+    /* Obtaining Status of the socket service from Child component
+      using Subject */
+    this.appService.websocketStatus$()
+      .subscribe((status) => {
+        this.status = status;
+      });
   }
 }
