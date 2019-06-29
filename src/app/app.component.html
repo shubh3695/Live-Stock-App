@@ -1,10 +1,10 @@
-<div class="container-fluid root-wrapper">
-  <header>
+<div class="container-fluid root-wrapper display-inline">
+  <header class="position-fixed">
     <div class="row header-content">
       <span class="label animated fadeIn delay-2s">Stock-o-Pedia</span>
-      <button class="animated fadeIn delay-2s" (click)="socketServiceContext()">
-        <div class="icon" [ngClass]="[status === 'reconnect' ? 'orange' : 'red']"></div>
-        <span class="socket-status pl-2">{{status}}</span>
+      <button class="cursor-pointer animated fadeIn delay-2s" (click)="socketServiceContext()">
+        <div class="icon display-inline-block" [ngClass]="[status === 'reconnect' ? 'orange' : 'red']"></div>
+        <span class="socket-status pl-2 display-inline-block">{{status}}</span>
       </button>
       <!--Probably Will Add More Content Later-->
     </div>

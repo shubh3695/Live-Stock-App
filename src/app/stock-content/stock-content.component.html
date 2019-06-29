@@ -1,12 +1,12 @@
 <div class="container-fluid stock-wrapper">
   <div class="row">
     <div class="col-6 left-container">
-      <div class="root-header">
+      <div class="root-header text-align-center">
         <span>Real Time Stock Information</span>
       </div>
       <mat-card class="animated fadeIn delay-1s">
-        <div class="header-wrapper">
-          <i class="fa fa-refresh ml-3 mt-3" aria-hidden="true" (click)="resetStockHistory()" title="Reset Stock History"></i>
+        <div class="header-wrapper display-flex">
+          <i class="fa fa-refresh ml-3 mt-3 cursor-pointer" aria-hidden="true" (click)="resetStockHistory()" title="Reset Stock History"></i>
           <form class="example-form">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Stock Name" [(ngModel)]="searchQuery" (input)="searchStockQuery($event.target.value)" [ngModelOptions]="{standalone: true}">
@@ -17,13 +17,13 @@
           <perfect-scrollbar [config]="config">
             <div class="row">
               <div class="col-6 mb-1 px-3 pb-1" *ngFor="let stock of stockContent | keyvalue; let i=index; trackBy:index">
-                <mat-card [ngClass]="['stock-content', currentStock === stock.key ? 'darken': '']" (click)="loadStockChart(stock.key)">
+                <mat-card [ngClass]="['stock-content cursor-pointer', currentStock === stock.key ? 'darken': '']" (click)="loadStockChart(stock.key)">
                   <div class="grid-content m-1">
                     <div class="">
                       <span class="stock-label">{{stock.key}}</span>
                       <span class="stock-update mr-1 mt-1">{{getTimeDifference(stock.value.timestamp)}}</span>
                     </div>
-                    <div class="block">
+                    <div class="display-block">
                       <span>{{stock.value.current}}$</span>
                       <i [ngClass]="['fa ml-1', stock.value.current >= stock.value.prev ? 'fa-arrow-up': 'fa-arrow-down']"
                         aria-hidden="true"></i>
@@ -44,7 +44,7 @@
       </mat-card>
     </div>
     <div class="col-6 right-container">
-        <div class="root-header">
+        <div class="root-header text-align-center">
           <span>Real Time Graph</span>
         </div>
       <mat-card class="animated fadeIn delay-1s">

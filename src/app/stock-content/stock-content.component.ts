@@ -49,6 +49,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
       this.stockContent[key].chartLabels);
   }
   public resetStockHistory() {
+    this.searchQuery = "";
     this.originalSource = {};
     this.stockContent = {};
     this.currentStock = undefined;

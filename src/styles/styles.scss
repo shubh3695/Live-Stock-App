@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "classes";
+@import "variables";
+
 html, body {
     height: 100vh;
-    background-color: rgb(226, 222, 222) !important;
+    background-color: $white-light !important;
     overflow: hidden;
 }
