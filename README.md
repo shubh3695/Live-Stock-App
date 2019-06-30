@@ -1,5 +1,6 @@
 # StocksApp
-View this app live at http://stock-o-pedia.herokuapp.com/.
+View this app live at https://stock-o-pedia.herokuapp.com/.
+It is a PWA installable(over https) but WebSocket end point is unsecure so might need to allow 'load unsecure scripts' when prompte d or use http instead.
 ## Running Application
 Simply do an `npm install`, your project will be setup post install. Then to run, do `npm start` to run the application.
 
@@ -28,4 +29,4 @@ Simply do an `npm install`, your project will be setup post install. Then to run
     2. Chunk Js files categorically and multiplex requests over to the browser [H2]
  
 ## Sample
-![Alt text](sample-v2.png)
+![Sample Image](sample-v2.png)
