@@ -32,7 +32,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
   };
   public stockContent: { [key: string]: IStockContent } = {};
   public originalSource: { [key: string]: IStockContent } = {};
-
+  public visibleStocks = false;
   /* private variables start here*/
   private currentStock: string;
   public searchQuery: string;
@@ -78,6 +78,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
    * @memberof StockContentComponent
    */
   public resetStockHistory() {
+    this.visibleStocks = false;
     this.searchQuery = '';
     this.originalSource = {};
     this.stockContent = {};
@@ -231,13 +232,16 @@ export class StockContentComponent implements OnInit, OnDestroy {
    */
   private _naiveFilterContents() {
     if (!this.searchQuery) {
+      this.visibleStocks = true;
       this.stockContent = this.originalSource;
       return;
     }
     this.stockContent = {};
+    this.visibleStocks = false;
     for (const key in this.originalSource) {
       if (key.startsWith(this.searchQuery)) {
         this.stockContent[key] = this.originalSource[key];
+        this.visibleStocks = true;
       }
     }
   }

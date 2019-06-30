@@ -13,9 +13,9 @@
             </mat-form-field>
           </form>
         </div>
-        <div class="cards-layout" style="max-height: 400px; height: 400px;">
+        <div class="cards-layout">
           <perfect-scrollbar [config]="config">
-            <div class="row">
+            <div class="row" *ngIf="visibleStocks;else noContent">
               <div class="col-6 mb-1 px-3 pb-1" *ngFor="let stock of stockContent | keyvalue; let i=index; trackBy: dataTracker">
                 <mat-card [ngClass]="['stock-content cursor-pointer', currentStock === stock.key ? 'darken': '']" (click)="loadStockChart(stock.key)">
                   <div class="grid-content m-1">
@@ -39,6 +39,7 @@
                 </mat-card>
               </div>
             </div>
+            <ng-template #noContent><span class="display-flex text-align-center mt-5 no-content">Nothing to Show.</span></ng-template>
           </perfect-scrollbar>
         </div>
       </mat-card>
