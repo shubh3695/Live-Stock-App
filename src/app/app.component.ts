@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from 'src/services/app.service';
 import { SOCKET_CONNECTION } from 'src/base/enums';
+import { fromEvent as observableFromEvent } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 /**
  * AppComponent
@@ -24,8 +26,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._manageSocketConection();
+    this.onlineNotifier();
   }
 
+  /**
+   * Although it will be auto handled but
+   * due to limited connection it breaks out
+   * then manual intervention will work
+   */
   public socketServiceContext() {
     if (this.status === SOCKET_CONNECTION.DISCONNECTED) {
       /* If I was disconnected, send a signal to restart -- > StockContentComponent*/
@@ -35,8 +43,31 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  
+  /**
+   * Chrome rebinds to the WS network if net off,
+   * but firefox WS needs to be reconnected.
+   * Making sure action of both browsers is same
+   * @readonly
+   * @memberof AppComponent
+   */
+  public onlineNotifier() {
+    observableFromEvent(window, 'offline')
+      .pipe(distinctUntilChanged())
+      .subscribe(() => {
+        console.log(String.fromCodePoint(0x1F621) + ' You went offline ' + String.fromCodePoint(0x1F621));
+        this.status = SOCKET_CONNECTION.DISCONNECTED;
+      });
+
+    observableFromEvent(window, 'online')
+      .pipe(distinctUntilChanged())
+      .subscribe(() => {
+        console.log(String.fromCodePoint(0x1F60A) + ' Back online ' + String.fromCodePoint(0x1F60A));
+        this.appService.websocketAction$().next(SOCKET_CONNECTION.RESTART);
+      });
+  }
+
   public ngOnDestroy() {
+    // app component destroyed'
   }
 
   private _manageSocketConection() {
