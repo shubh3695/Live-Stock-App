@@ -65,8 +65,8 @@ export class StockContentComponent implements OnInit, OnDestroy {
    */
   public loadStockChart(key: string) {
     if (this.currentStock === key) {
-      this.appService.initChart();
-      this.currentStock = undefined;
+      // chart already loaded
+      return;
     }
     this.currentStock = key;
     this.appService.renewChartData({ data: this.stockContent[key].chartData, label: key },
