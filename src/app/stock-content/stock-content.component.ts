@@ -134,7 +134,7 @@ export class StockContentComponent implements OnInit, OnDestroy {
   /* Private Functions start here */
 
   /**
-   * function assigns new response of stock data 
+   * function assigns new response of stock data
    * into map of objects
    * @param response : new response emitted via rxjs
    */
