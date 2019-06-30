@@ -10,6 +10,7 @@ Simply do an `npm install`, your project will be setup post install. Then to run
 3. Service Worker for offline project structure support
 4. PWA Installable(for supported browser versions eg Chrome 70+) (https only)
 6. Technically, minified code using Terser + treeshaked ES2015 module
+7. Deployment automation on Heroku
 
 ## Stack Used
 1. Angular 8
